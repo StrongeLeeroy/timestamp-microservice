@@ -13,32 +13,23 @@ app.listen(PORT, function() {
 });
 
 function getTimestampJSON(timestamp) {
-	// First, we handle the unix timestamps. Path parameters come in as text
-	// rather than numbers, so we'll attempt to parse them.
 	var result = {
 		unix: null,
 		natural: null
 	};
 
 	var date;
-	if (!isNaN(parseInt(timestamp)) {
-		// This means that the parsed integer is NOT a
-		// NaN (not a number) value, in other words: it's a valid number.
+	if (!isNaN(parseInt(timestamp))) {
 		date = new Date(parseInt(timestamp));
 	} else {
-		// Timestamp is not a valid number, we'll create a Date object
-		// and then check if is valid before we return it
 		date = new Date(timestamp);
 	}
 
 	if (!isNaN(date.getTime())) {
-		// Date.getTime() returns the unix timestamp,
-		// if it where an invalid date, this would be NaN
 		result.unix = date.getTime();
 		result.natural = getNaturalDate(date);
 	}
 
-	// We return the value, whatever it may be.
 	return result;
 }
 
